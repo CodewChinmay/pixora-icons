@@ -6,36 +6,36 @@ function Headerpage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="bg-gray-800/80 backdrop-blur-sm border-b border-gray-700">
+    <header className="">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="h-16 flex items-center justify-between">
           {/* Brand / Logo */}
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-red-700 to-purple-400 bg-clip-text text-transparent">
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-700 to-blue-400 bg-clip-text text-transparent">
             Pixora UI
           </h1>
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-6">
             <Link
               to="/"
-              className="text-gray-300 hover:text-white transition-colors"
+              className="text-blue-400 text-1xl hover:text-blue-600 transition-colors"
             >
               Home
             </Link>
             <Link
               to="/icons"
-              className="text-gray-300 hover:text-white transition-colors"
+              className="text-blue-400 text-1xl hover:text-blue-600 transition-colors"
             >
               Icons
             </Link>
             <Link
               to="/components"
-              className="text-gray-300 hover:text-white transition-colors"
+              className="text-blue-400 text-1xl hover:text-blue-600 transition-colors"
             >
               Components
             </Link>
             <Link
               to="/docs"
-              className="text-gray-300 hover:text-white transition-colors"
+              className="text-blue-400 text-1xl hover:text-blue-600 transition-colors"
             >
               Docs
             </Link>

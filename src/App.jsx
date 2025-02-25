@@ -9,7 +9,7 @@ import Headerpage from "./pages/header";
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-gray-200">
+      <div className="min-h-screen bg-gradient-to-br from-white to-blue-100 text-gray-200">
         {/* Header remains visible on all pages */}
         <Headerpage />
 

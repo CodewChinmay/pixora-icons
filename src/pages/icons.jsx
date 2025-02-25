@@ -1,127 +1,129 @@
-import { useState, useEffect } from "react";
-import { Profile, Message, Menu } from "pixora-icons";
-import { Clipboard } from "lucide-react";
 
-function IconPage() {
-  // State declarations
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedIcon, setSelectedIcon] = useState(null);
-  const [copied, setCopied] = useState(false);
-  const [modalTranslate, setModalTranslate] = useState("translate-y-full");
-  const [importCopied, setImportCopied] = useState(false);
-  const [usageSize, setUsageSize] = useState(130);
-  const [usageColor, setUsageColor] = useState("#ffffff");
-  const [usageCopied, setUsageCopied] = useState(false);
+import { useState, useEffect } from "react"
 
-  // Icon list
-  const icons = [
-    { name: "Profile", Component: Profile },
-    { name: "Message", Component: Message },
-    { name: "Menu", Component: Menu },
-  ];
+import { Profile, Message, Menu, Images } from "pixora-icons"
+import { Clipboard, Home } from "lucide-react"
 
-  const filteredIcons = icons.filter((icon) =>
-    icon.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+function iconpage () {
+      // State declarations
+  const [searchTerm, setSearchTerm] = useState("")
+  const [selectedIcon, setSelectedIcon] = useState(null)
+  const [copied, setCopied] = useState(false)
+  const [modalTranslate, setModalTranslate] = useState("translate-y-full")
+  const [importCopied, setImportCopied] = useState(false)
+  const [usageSize, setUsageSize] = useState(130)
+  const [usageColor, setUsageColor] = useState("white")
+  const [usageCopied, setUsageCopied] = useState(false)
 
-  const installCommand = "npm install pixora-icons";
 
-  // Copy install command to clipboard
-  const handleCopy = () => {
-    navigator.clipboard.writeText(installCommand);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
+    // Icon list
+    const icons = [
+        { name: "Profile", Component: Profile },
+        { name: "Message", Component: Message },
+        { name: "Menu", Component: Menu },
+        { name: "Images", Component: Images },
 
-  // Reset live preview values and trigger modal slide animation when a new icon is selected
-  useEffect(() => {
-    if (selectedIcon) {
-      setUsageSize(130);
-      setUsageColor("#ffffff");
-      // Delay a bit to allow CSS transition to trigger
-      setTimeout(() => setModalTranslate("translate-y-0"), 10);
-    } else {
-      setModalTranslate("translate-y-full");
-    }
-  }, [selectedIcon]);
+      ]
+    
+      const filteredIcons = icons.filter((icon) =>
+        icon.name.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    
+      const installCommand = "npm install pixora-icons"
+    
+      const handleCopy = () => {
+        navigator.clipboard.writeText(installCommand)
+        setCopied(true)
+        setTimeout(() => setCopied(false), 2000)
+      }
+    
+      // Reset live editor values and trigger modal slide animation when a new icon is selected
+      useEffect(() => {
+        if (selectedIcon) {
+          setUsageSize(130)
+          setUsageColor("white")
+          setTimeout(() => setModalTranslate("translate-y-0"), 10)
+        } else {
+          setModalTranslate("translate-y-full")
+        }
+      }, [selectedIcon])
 
-  return (
-    <div className="relative">
-      {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
-        {/* Quick Start Section */}
-        <section className="space-y-6">
-          <h2 className="text-2xl font-bold text-gray-100">Quick Start</h2>
-          <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700 shadow-lg">
-            <p className="mb-4 text-gray-400">
-              Install with your package manager:
-            </p>
-            <div className="relative group">
-              <pre className="bg-gray-900/80 backdrop-blur-sm text-indigo-300 p-4 rounded-lg font-mono border border-gray-700 transition-all duration-200 group-hover:border-indigo-500">
-                {installCommand}
-              </pre>
-              <button
-                onClick={handleCopy}
-                className="absolute top-3 right-3 p-2 bg-gray-800/50 hover:bg-indigo-500/10 rounded-lg text-gray-400 hover:text-indigo-300 transition-all"
-              >
-                <Clipboard size={18} />
-              </button>
-              <div
-                className={`absolute top-12 right-3 px-3 py-1 bg-indigo-500 text-white text-sm rounded-md transition-opacity ${
-                  copied ? "opacity-100" : "opacity-0"
-                }`}
-              >
-                Copied!
+    return (
+        <div>
+            <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="grid md:grid-cols-2 gap-8">
+          {/* Quick Start Section */}
+          <section className="space-y-6">
+            <h2 className="text-xl font-semibold text-blue-500">Quick Start</h2>
+            <div className="bg-gradient-to-tr from-blue-200 to-blue-400 hover:from-blue-400 hover:to-blue-200 shadow-xl shadow-blue-200 hover:shadow-blue-300 p-6">
+              <p className="mb-4 text-gray-900">
+                Install with your package manager:
+              </p>
+              <div className="relative group">
+                <pre className="bg-gray-900/80 backdrop-blur-sm text-indigo-300 p-4 rounded-lg scrollbar-none font-mono border border-gray-700 transition-all duration-200 group-hover:border-indigo-500">
+                  {installCommand}
+                </pre>
+                <button
+                  onClick={handleCopy}
+                  className="absolute top-3 right-3 p-2 bg-gray-800/50 hover:bg-indigo-500/10 rounded-lg text-gray-400 hover:text-indigo-300 transition-all"
+                >
+                  <Clipboard size={18} />
+                </button>
+                <div
+                  className={`absolute top-12 right-3 px-3 py-1 bg-indigo-500 text-white text-sm rounded-md transition-opacity ${
+                    copied ? "opacity-100" : "opacity-0"
+                  }`}
+                >
+                  Copied!
+                </div>
               </div>
-            </div>
 
-            <div className="mt-6 space-y-4">
-              <p className="text-gray-400">Basic usage:</p>
-              <pre className="bg-gray-900/80 backdrop-blur-sm text-green-400 p-4 rounded-lg font-mono border border-gray-700">
-                {`import { Home } from 'pixora-icons';
+              <div className="mt-6 space-y-4">
+                <p className="text-gray-900">Basic usage:</p>
+                <pre className="bg-gray-900/80 backdrop-blur-sm text-green-400 p-4 rounded-lg font-mono border border-gray-700">
+                  {`import { Home } from 'pixora-icons';
 
 function App() {
   return <Home size={24} className="text-gray-400"/>
 }`}
-              </pre>
+                </pre>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        {/* Icon Showcase Section */}
-        <section className="space-y-6">
-          <div className="space-y-4">
-            <h2 className="text-2xl font-bold text-gray-100">Explore Icons</h2>
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Search icons..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full px-4 py-3 bg-gray-800/50 backdrop-blur-sm rounded-lg border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/30 text-gray-200 placeholder-gray-500 transition-all"
-              />
+          {/* Icon Showcase Section */}
+          <section className="space-y-6">
+            <div className="space-y-4">
+              <h2 className="text-xl font-semibold text-blue-600">
+                Explore Icons
+              </h2>
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Search icons..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full px-4 py-3 bg-blue-300/50 backdrop-blur-sm focus:none text-gray-200 placeholder-blue-900 transition-all"
+                />
+              </div>
             </div>
-          </div>
 
-          {filteredIcons.length > 0 ? (
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {filteredIcons.map(({ name, Component }, index) => (
                 <button
                   key={index}
                   onClick={() => setSelectedIcon({ name, Component })}
-                  className="group flex flex-col items-center p-4 bg-gray-800/30 backdrop-blur-sm rounded-xl border border-gray-700 hover:border-indigo-500/50 hover:bg-indigo-500/10 transition-all duration-200 shadow hover:shadow-lg"
+                  className="group flex flex-col items-center p-4 bg-gray-300/30 backdrop-blur-sm transition-all duration-200"
                 >
-                  <Component className="w-10 h-10 text-gray-400 group-hover:text-indigo-300 transition-colors" />
-                  <span className="mt-2 text-sm text-gray-400 group-hover:text-gray-200">
+                  <Component className="w-10 h-10 text-gray-600 group-hover:text-black transition-colors" />
+                  <span className="mt-2 text-sm text-gray-600 group-hover:text-gray-900">
                     {name}
                   </span>
                 </button>
               ))}
             </div>
-          ) : (
-            <p className="text-gray-400 text-center">No icons found.</p>
-          )}
-        </section>
+          </section>
+        </div>
       </main>
 
       {/* Icon Detail Modal */}
@@ -136,32 +138,33 @@ function App() {
           <div
             className={`relative w-full md:max-w-2xl bg-gray-800/95 backdrop-blur-xl rounded-t-xl md:rounded-xl border border-gray-700 shadow-2xl transition-transform duration-300 ${modalTranslate} text-white`}
           >
-            {/* Modal Header */}
-            <div className="flex items-center justify-between p-4 border-b border-gray-700">
-              <h3 className="text-xl font-bold">
-                {selectedIcon.name} Icon
-              </h3>
-              <button
-                onClick={() => setSelectedIcon(null)}
-                className="p-2 hover:bg-gray-700/30 rounded-full transition-all"
+            {/* Close Button */}
+            <button
+              onClick={() => setSelectedIcon(null)}
+              className="absolute top-4 right-4 p-2 hover:bg-gray-700/30 rounded-full transition-all"
+            >
+              <svg
+                className="w-6 h-6 text-gray-400"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
               >
-                <svg
-                  className="w-6 h-6 text-gray-400"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </button>
-            </div>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
 
-            {/* Modal Content */}
             <div className="p-6 space-y-6">
+              {/* Modal Header */}
+              <div className="flex items-center justify-between">
+                <h3 className="text-2xl font-semibold">
+                  {selectedIcon.name} Icon
+                </h3>
+              </div>
+
               {/* Interactive Preview */}
               <div className="relative group">
                 <div className="flex justify-center p-8 bg-gray-900/50 rounded-xl border border-gray-700">
@@ -183,7 +186,9 @@ function App() {
               {/* Live Editor Controls */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="flex flex-col">
-                  <label className="mb-1 text-sm">Size: {usageSize}px</label>
+                  <label className="mb-1 text-sm">
+                    Size: {usageSize}px
+                  </label>
                   <input
                     type="range"
                     min="10"
@@ -204,7 +209,7 @@ function App() {
                 </div>
               </div>
 
-              {/* Code Blocks */}
+              {/* Separated Code Blocks */}
               <div className="flex flex-col gap-4">
                 {/* Import Statement */}
                 <div className="space-y-3">
@@ -214,10 +219,10 @@ function App() {
                     </span>
                     <button
                       onClick={() => {
-                        const importCode = `import { ${selectedIcon.name} } from 'pixora-icons';`;
-                        navigator.clipboard.writeText(importCode);
-                        setImportCopied(true);
-                        setTimeout(() => setImportCopied(false), 2000);
+                        const importCode = `import { ${selectedIcon.name} } from 'pixora-icons';`
+                        navigator.clipboard.writeText(importCode)
+                        setImportCopied(true)
+                        setTimeout(() => setImportCopied(false), 2000)
                       }}
                       className="flex items-center text-sm text-indigo-400 hover:text-indigo-300 transition-colors"
                     >
@@ -246,10 +251,10 @@ function App() {
                     </span>
                     <button
                       onClick={() => {
-                        const usageCode = `<${selectedIcon.name} size={${usageSize}} color="${usageColor}" />`;
-                        navigator.clipboard.writeText(usageCode);
-                        setUsageCopied(true);
-                        setTimeout(() => setUsageCopied(false), 2000);
+                        const usageCode = `<${selectedIcon.name} size={${usageSize}} color="${usageColor}" />`
+                        navigator.clipboard.writeText(usageCode)
+                        setUsageCopied(true)
+                        setTimeout(() => setUsageCopied(false), 2000)
                       }}
                       className="flex items-center text-sm text-indigo-400 hover:text-indigo-300 transition-colors"
                     >
@@ -277,8 +282,10 @@ function App() {
           </div>
         </div>
       )}
-    </div>
-  );
+        </div>
+    )
 }
 
-export default IconPage;
+
+
+export default iconpage
