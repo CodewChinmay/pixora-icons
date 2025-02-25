@@ -5,6 +5,7 @@ import Homepage from "./pages/home";
 import Iconpage from "./pages/icons";
 import Footerpage from "./pages/footer";
 import Headerpage from "./pages/header"; 
+import Docs from "./pages/docs";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/icons" element={<Iconpage />} />
+          <Route path="/docs" element={<Docs />} />
           {/* Add more routes here for components, docs, etc. */}
         </Routes>
 
