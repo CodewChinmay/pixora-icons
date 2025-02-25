@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react"
 
-import { Profile, Message, Menu, Images } from "pixora-icons"
+import { Profile, Message, Menu, Images, Imagesplus, User } from "pixora-icons"
 import { Clipboard, Home } from "lucide-react"
 
 function iconpage () {
@@ -22,6 +22,8 @@ function iconpage () {
         { name: "Message", Component: Message },
         { name: "Menu", Component: Menu },
         { name: "Images", Component: Images },
+        { name: "Imagesplus", Component: Imagesplus },
+        { name: "User", Component: User },
 
       ]
     
